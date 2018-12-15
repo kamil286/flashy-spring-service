@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/flashcard")
 public class FlashcardController {
 
@@ -25,9 +26,10 @@ public class FlashcardController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Flashcard addNewFlashcards(@RequestBody Flashcard flashcard) {
         LOG.info("Saving flashcard.");
-        return flashcardRepository.save(flashcard);
+        return flashcardDAL.addNewFlashcard(flashcard);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Flashcard> getAllFlashcards() {
         LOG.info("Getting all flashcards.");
